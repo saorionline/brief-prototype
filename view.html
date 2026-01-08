@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Sentient Sentry - Automation Flowchart</title>
+    <!-- Updated CDN link for Mermaid.js v10.9.0 -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.0/dist/mermaid.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .mermaid {
+            display: flex;
+            justify-content: center;
+            margin: 20px auto;
+            max-width: 800px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .description {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <h1>The Sentient Sentry - Technical Automation Flowchart</h1>
+    <p class="description">
+        This interactive flowchart visualizes the automation process for 'The Sentient Sentry'. Hover over nodes for details. Built as a web development exercise using Mermaid.js.
+    </p>
+    
+    <div class="mermaid">
+        graph TD
+            A([START]) --> B[New Email in Gmail<br/>Phase 1: The Input (The Trigger)]
+            B --> C{Logic Gate Filter<br/>Scan for keywords: 'Urgent', 'Complaint', 'Meeting'}
+            C -->|Yes| D[OpenAI Module: Parse Email Body<br/>Phase 2: The Brain (The AI Parse)]
+            D --> E[Sub-process: JSON Transformation<br/>Categorize as 'High Priority' or extract 'Meeting Dates']
+            E --> F[Webhook<br/>Phase 3: The Database (Relational Storage)]
+            F --> G[Notion: Auto-populate into Daily Logs Table]
+            G --> H[Deduplicate: Zapier checks Email ID to prevent duplicates]
+            H --> I([END])
+            
+            %% Tooltips for interactivity (hover to see)
+            A -->|Click to start simulation| B
+            C -->|Decision point: Filters irrelevant emails| D
+            E -->|AI outputs structured JSON for categorization| F
+            H -->|Prevents duplicate entries in the database| I
+    </div>
+
+    <script type="module">
+         import mermaid from './mermaid.esm.min.mjs';  // Adjust path if the file is in a different folder
+        // Initialize Mermaid for rendering
+        mermaid.initialize({ 
+            startOnLoad: true,
+            theme: 'default',  // You can change to 'dark' or 'forest' for different styles
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true
+            }
+        });
+
+        // Optional: Add click interactivity (e.g., alert on node click)
+        document.addEventListener('DOMContentLoaded', function() {
+            const nodes = document.querySelectorAll('.mermaid svg g.node');
+            nodes.forEach(node => {
+                node.addEventListener('click', function() {
+                    alert('Node clicked: ' + this.textContent.trim());
+                });
+            });
+        });
+    </script>
+</body>
+</html>
